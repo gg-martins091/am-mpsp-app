@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getData } from './storage';
+import { getToken } from './storage';
 
 /* Endereços para cada emulador/simulador:
 ** Genymotion:              http://10.0.3.2:3333/
@@ -7,14 +7,14 @@ import { getData } from './storage';
 ** Simulador IOS:           http://localhost:3333/
 */
 const api = axios.create({
-    baseURL: "https://am-mpsp.appspot.com/api/v1"
+    baseURL: "http://am-mpsp.appspot.com/api/v1"
 });
 
 
 api.interceptors.request.use(async config => {
-    const data = JSON.parse(await getData());
-    if (data.token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const data = await getToken();
+    if (data) {
+      config.headers.Authorization = `Bearer ${data}`;
     }
     return config;
   });

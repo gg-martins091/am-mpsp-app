@@ -7,6 +7,10 @@ const Container = styled.View`
   backgroundColor: #F5F5F5;
 `;
 
+const SimpleContainer = styled.View`
+    flex: 1;
+`
+
 const Logo = styled.Image`
   height: 30%;
   marginBottom: 40px;
@@ -45,6 +49,7 @@ const ButtonText = styled.Text`
   fontWeight: bold;
   fontSize: 16px;
   textAlign: center;
+  margin: 0 auto;
 `;
 
 const SignUpLink = styled.TouchableHighlight`
@@ -59,4 +64,4 @@ const SignUpLinkText = styled.Text`
   textAlign: center;
 `;
 
-export { Container, Logo, Input, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };
+export { SimpleContainer, Container, Logo, Input, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText };
