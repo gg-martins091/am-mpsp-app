@@ -3,6 +3,7 @@ import { ScrollView, View, Text, TouchableOpacity, Linking} from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 // import { Container } from './styles';
 import firebase from '../../utils/firebase';
+import { getId } from '../../utils/storage';
 
 export default class Dashboard extends Component {
     static navigationOptions = {
@@ -21,34 +22,25 @@ export default class Dashboard extends Component {
         this.state = {
             data: [
                 {
-                    cpf: null,
-                    rg: '00000',
+                    cpf: '09928371182',
+                    rg: '621813588',
                     link_relatório: ''
                 },
                 {
-                    cpf: null,
-                    rg: '00000',
+                    cpf: '03392812338',
                     link_relatório: ''
                 },
                 {
-                    cpf: null,
-                    rg: '00000',
+                    rg: '5582291102',
+                    link_relatório: 'https://firebasestorage.googleapis.com/v0/b/am-mpsp.appspot.com/o/relatorios%2Frelatorio.pdf?alt=media'
+                },
+                {
+                    cnpj: '204003882991103',
                     link_relatório: ''
                 },
                 {
-                    cpf: null,
-                    rg: '00000',
-                    link_relatório: ''
-                },
-                {
-                    cpf: null,
-                    rg: '00000',
-                    link_relatório: ''
-                },
-                {
-                    cpf: null,
-                    rg: '00000',
-                    link_relatório: 'http://google.com'
+                    rg: '335589483',
+                    link_relatório: 'https://firebasestorage.googleapis.com/v0/b/am-mpsp.appspot.com/o/relatorios%2Frelatorio.pdf?alt=media'
                 },
                 
             ]
@@ -65,16 +57,17 @@ export default class Dashboard extends Component {
         });
     };
 
-    componentDidMount() {
-        firebase.firestore().collection('flows').orderBy('created_at', 'desc').where('user_id', '==', this.props.id).onSnapshot(d => {
-          this.getData();
-        });
+    async componentDidMount() {
+        const id = await getId();
+        /* firebase.firestore().collection('flows').orderBy('created_at', 'desc').where('user_id', '==', parseInt(1)).onSnapshot(d => {
+          this.getData(id);
+        }); */
     }
 
-    getData = async () => {
+    getData = async (id) => {
         let dataTmp = [];
         const d = await firebase.firestore().collection('flows')
-          .orderBy('created_at', 'desc').where('user_id', '==', this.props.id).get();
+          .orderBy('created_at', 'desc').where('user_id', '==', 1).get();
     
         for (let index = 0; index < d.docs.length; index++) {
           const flow = d.docs[index];

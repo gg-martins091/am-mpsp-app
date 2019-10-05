@@ -48,7 +48,7 @@ export default class Login extends Component {
             });
               
             await setData('ammpsp@token', response.data.token);
-            await setData('ammpsp@id', response.data.user_id.toString());
+            await setData('ammpsp@id', `${response.data.user_id}`);
     
             const resetAction = StackActions.reset({
               index: 0,

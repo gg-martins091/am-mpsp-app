@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 
 const Routes = createAppContainer(createStackNavigator({
-    //Login,
+    Login,
     Dashboard,
 }));
 
